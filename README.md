@@ -1,5 +1,4 @@
 
-```markdown
 # 🧬 Drug Discovery AI Agent (Multi-Source RAG System)
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
@@ -50,10 +49,8 @@ The architecture is built on four specialized layers:
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/Ahmadgatany/drug-discovery-rag.git](https://github.com/Ahmadgatany/drug-discovery-rag.git)
-cd drug-discovery-rag
-
-
+git clone [https://github.com/Ahmadgatany/drug-discovery-rag-agent.git](https://github.com/Ahmadgatany/drug-discovery-rag-agent.git)
+cd drug-discovery-rag-agent
 
 ### 2. Install Dependencies
 
