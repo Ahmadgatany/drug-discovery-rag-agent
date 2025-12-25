@@ -1,0 +1,16 @@
+# Secrets
+.env
+
+# Python Environment
+__pycache__/
+*.py[cod]
+*$py.class
+drug_rag_env/
+venv/
+
+# Local Data (ChromaDB)
+data/
+
+# Logs & OS Files
+*.log
+.DS_Store
