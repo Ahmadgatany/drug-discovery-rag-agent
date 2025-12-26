@@ -8,7 +8,7 @@ class VectorTool:
         self.embedder = LocalEmbedder()
         self.collection = self.client.get_or_create_collection(
             name="drug_discovery_docs",
-            metadata={"hnsw:space": "cosine"} # استخدام تشابه الجيوب لنتائج أدق
+            metadata={"hnsw:space": "cosine"} 
         )
 
     def add_texts(self, texts, metadatas=None):
