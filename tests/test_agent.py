@@ -5,7 +5,6 @@ from tools.vector_db import VectorTool
 from tools.web_search import WebSearchTool
 
 
-# --- اختبار الـ Agent ---
 def test_agent_initialization_and_search():
     """Test that the medical agent works correctly and returns a data dictionary"""
     graph = GraphTool()
