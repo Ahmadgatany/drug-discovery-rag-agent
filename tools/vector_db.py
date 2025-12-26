@@ -4,7 +4,6 @@ from core.embedder import LocalEmbedder
 
 class VectorTool:
     def __init__(self):
-        # استخدام التخزين المستمر (Persistent) لحفظ البيانات في مجلد data/
         self.client = chromadb.PersistentClient(path=Config.CHROMA_PATH)
         self.embedder = LocalEmbedder()
         self.collection = self.client.get_or_create_collection(
@@ -16,14 +15,11 @@ class VectorTool:
         if not texts: 
             return
         
-        # تحويل النصوص لمتجهات باستخدام الـ GPU
         embeddings = [self.embedder.encode(t) for t in texts]
-        
-        # إنشاء IDs فريدة لكل نص لضمان عدم حدوث تضارب في قاعدة البيانات
+
         import uuid
         ids = [str(uuid.uuid4()) for _ in texts]
-        
-        # الحل: التأكد من أن الميتادات تحتوي على معلومة واحدة على الأقل (مثل المصدر)
+
         if metadatas is None:
             metadatas = [{"source": "pubmed_extract", "type": "scientific_paper"} for _ in texts]
         
@@ -44,8 +40,7 @@ class VectorTool:
             query_embeddings=[query_embedding],
             n_results=n_results
         )
-        
-        # دمج النتائج في نص واحد للسياق
+
         if results['documents']:
             return "\n\n".join(results['documents'][0])
         return "No relevant local literature found."

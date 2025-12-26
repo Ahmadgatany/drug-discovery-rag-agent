@@ -27,7 +27,6 @@ class GraphTool:
         print("[*] Neo4j Graph seeded successfully!")
 
     def query(self, drug_name):
-        # كود Cypher الذي استخدمناه في النوتبوك لجلب العلاقات
         cypher_query = """
         MATCH (d:Drug {name: $name})-[r]->(t)
         RETURN d.name as drug, type(r) as relation, t.name as target, labels(t)[0] as type

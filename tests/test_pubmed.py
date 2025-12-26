@@ -8,6 +8,6 @@ def test_pubmed_fetch_structure():
     
     assert isinstance(results, list)
     if len(results) > 0:
-        # التعديل هنا: نتأكد أن العنصر عبارة عن نص وليس قاموس
+
         assert isinstance(results[0], str) 
-        assert len(results[0]) > 20 # التأكد أن النص يحتوي على محتوى فعلي
+        assert len(results[0]) > 20 

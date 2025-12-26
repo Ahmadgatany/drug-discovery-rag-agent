@@ -3,22 +3,21 @@ from core.config import Config
 
 class WebSearchTool:
     def __init__(self):
-        # التأكد من وجود المفتاح في ملف .env
         if not Config.TAVILY_API_KEY:
             print("[!] Warning: TAVILY_API_KEY not found in Config.")
         self.client = TavilyClient(api_key=Config.TAVILY_API_KEY)
 
     def search(self, query: str):
         """
-        تقوم هذه الدالة بالبحث في الويب عن أحدث المعلومات الطبية (2024-2025).
+        This function searches the web for the latest medical information (2024-2025).
         """
+
         try:
-            # استخدام البحث المتقدم (Advanced) لضمان جودة النتائج الطبية
             search_result = self.client.search(
                 query=query,
                 search_depth="advanced",
                 max_results=3,
-                include_answer=False # نحن نفضل الحصول على المحتوى الخام ليحلله الـ Agent بنفسه
+                include_answer=False 
             )
             
             formatted_results = []

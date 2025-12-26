@@ -7,6 +7,12 @@ __pycache__/
 *$py.class
 drug_rag_env/
 venv/
+.ipynb_checkpoints/
+
+# Tests & Cache
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Local Data (ChromaDB)
 data/
@@ -14,3 +20,4 @@ data/
 # Logs & OS Files
 *.log
 .DS_Store
+Thumbs.db
