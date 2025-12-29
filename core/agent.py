@@ -1,26 +1,50 @@
 from openai import OpenAI
 from core.config import Config
+import re
 
 class MedicalAgent:
     def __init__(self, graph_tool, vector_tool, web_tool):
-        """
-        Initialize the Agent and connect it with the three tools (Graph, Vector, Web)
-        """
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=Config.OPENROUTER_API_KEY,
         )
-        # Store the tools inside the Agent
         self.graph = graph_tool
         self.vector = vector_tool
         self.web = web_tool
 
-    def search(self, query: str):
-        """
-        Main search engine: gathers data from the three sources and then generates the answer
-        """
+    def _extract_entities(self, query: str):
+        extraction_prompt = f"""
+        Extract ONLY the medical entities (Drug names, Genes, or Diseases) from the following text.
+        Return them as a comma-separated list in English.
+        Text: "{query}"
+        Example Output: Metformin, Type 2 Diabetes
+        Entities:"""
         
-        graph_results = self.graph.query(query)
+        try:
+            response = self.client.chat.completions.create(
+                model=Config.LLM_MODEL,
+                messages=[{"role": "user", "content": extraction_prompt}],
+                max_tokens=50,
+                temperature=0 
+            )
+            entities_text = response.choices[0].message.content.strip()
+            entities = [e.strip() for e in entities_text.split(",") if e.strip()]
+            return entities
+        except:
+            return []
+
+    def search(self, query: str):
+        entities = self._extract_entities(query)
+
+        graph_context_list = []
+        if entities:
+            for entity in entities:
+                res = self.graph.query(entity)
+                if "No structured" not in res:
+                    graph_context_list.append(res)
+        
+        graph_results = "\n".join(graph_context_list) if graph_context_list else "No structured data found in Graph."
+
         vector_results = self.vector.search(query)
         web_results = self.web.search(query)
 
@@ -48,9 +72,10 @@ class MedicalAgent:
                     {"role": "system", "content": Config.SYSTEM_PROMPT},
                     {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
                 ],
-                temperature=Config.TEMPERATURE
+                temperature=Config.TEMPERATURE,
+                top_p=0.9,             
+                frequency_penalty=0.3 
             )
-            
             answer = response.choices[0].message.content
         except Exception as e:
             answer = f"عذراً، حدث خطأ أثناء توليد الإجابة: {str(e)}"
