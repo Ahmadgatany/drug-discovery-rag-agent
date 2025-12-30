@@ -99,15 +99,7 @@ streamlit run app.py
 ---
 
 ## 🛡️ Disclaimer
-
-This system is designed for **educational and research purposes only**. The AI-generated analysis should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always verify findings with clinical experts.
-
----
+*This system is for research purposes only. AI analysis should not replace professional medical judgment.*
 
 **Developed with ❤️ for the BioTech AI Community.**
 
-```
-
-Would you like me to add a **"Future Roadmap"** section to this file (e.g., adding 3D protein structure visualization or support for clinical trial PDF uploads)?
-
-```
