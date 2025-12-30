@@ -60,13 +60,6 @@ pip install -r requirements.txt
 
 ```
 
-### Run the pipeline:
-```bash
-python src/main.py
-```
-
-
-
 ### 3. Environment Configuration
 
 Create a `.env` file in the root directory:

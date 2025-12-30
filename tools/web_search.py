@@ -11,7 +11,6 @@ class WebSearchTool:
         """
         This function searches the web for the latest medical information (2024-2025).
         """
-
         try:
             search_result = self.client.search(
                 query=query,
