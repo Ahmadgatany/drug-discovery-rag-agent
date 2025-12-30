@@ -1,4 +1,4 @@
-# 🧬 Drug Discovery AI Agent (Multi-Source RAG System)
+# 🧬 Drug Discovery AI Agent (Advanced Graph RAG System)
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Framework-green.svg)](https://fastapi.tiangolo.com/)
@@ -6,18 +6,17 @@
 [![Neo4j](https://img.shields.io/badge/Neo4j-GraphDB-blue.svg)](https://neo4j.com/)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-VectorDB-orange.svg)](https://www.trychroma.com/)
 
-A sophisticated AI-driven Drug Discovery Explorer leveraging **Retrieval-Augmented Generation (RAG)**. This system unifies structured knowledge graphs, scientific literature (PubMed), and real-time web intelligence to provide high-fidelity, cited analysis of drugs, genes, and molecular pathways.
+A sophisticated AI-driven Drug Discovery Explorer leveraging **Graph RAG** architecture. This system unifies structured Knowledge Graphs (Neo4j), semantic vector search (ChromaDB/PubMed), and real-time web intelligence (Tavily) to provide high-fidelity, cited analysis of drugs, genes, and molecular pathways.
 
 ---
 
-## 🚀 Project Concept
+## 🚀 Project Concept: The Power of Graph RAG
 
-In the pharmaceutical domain, information is often fragmented across structured databases (Neo4j), vast repositories of research papers (PubMed), and rapidly evolving clinical updates on the web. 
+In the pharmaceutical domain, information is often fragmented. Traditional RAG (Vector-only) often fails to capture the complex, interconnected nature of biological data. This project implements a **Graph-Augmented Retrieval (Graph RAG)** approach to ensure:
 
-This **Medical AI Agent** bridges these gaps by:
-1.  **Retrieving:** Parallel fetching of data from a Knowledge Graph, Vector Store (Local PubMed index), and Live Web Search.
-2.  **Synthesizing:** Utilizing **Llama 3.3 (via OpenRouter)** to reason across these diverse data types.
-3.  **Grounding:** Preventing hallucinations by strictly anchoring the AI's response to the retrieved context, ensuring 2024-2025 data accuracy.
+1. **Relational Accuracy:** Unlike simple text matching, our Graph RAG tracks "Drug-Target-Disease" relationships as structured paths in Neo4j, preventing logical hallucinations.
+2. **Contextual Synthesis:** It bridges gaps by parallel fetching data from a **Knowledge Graph**, **Vector Store** (PubMed), and **Live Web Search**.
+3. **Multi-Hop Reasoning:** The agent can reason across diverse data types using **Llama 3.3**, answering complex questions by traversing graph nodes and grounding them with 2024-2025 clinical updates.
 
 ---
 
