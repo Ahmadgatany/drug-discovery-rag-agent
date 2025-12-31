@@ -1,86 +1,108 @@
-# 🧬 Drug Discovery AI Agent (Advanced Graph RAG System)
+# 🧬 Drug Discovery AI Explorer: Advanced Graph-RAG System
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Framework-green.svg)](https://fastapi.tiangolo.com/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-UI-red.svg)](https://streamlit.io/)
-[![Neo4j](https://img.shields.io/badge/Neo4j-GraphDB-blue.svg)](https://neo4j.com/)
-[![ChromaDB](https://img.shields.io/badge/ChromaDB-VectorDB-orange.svg)](https://www.trychroma.com/)
-
-A sophisticated AI-driven Drug Discovery Explorer leveraging **Graph RAG** architecture. This system unifies structured Knowledge Graphs (Neo4j), semantic vector search (ChromaDB/PubMed), and real-time web intelligence (Tavily) to provide high-fidelity, cited analysis of drugs, genes, and molecular pathways.
+An expert-grade AI system designed for pharmaceutical researchers. It utilizes **Graph-Augmented Retrieval (Graph-RAG)** to provide precise, evidence-based analysis of drug-target interactions, molecular pathways, and clinical trial updates.
 
 ---
 
-## 🚀 Project Concept: The Power of Graph RAG
+## 🌟 Why This Project?
 
-In the pharmaceutical domain, information is often fragmented. Traditional RAG (Vector-only) often fails to capture the complex, interconnected nature of biological data. This project implements a **Graph-Augmented Retrieval (Graph RAG)** approach to ensure:
+Traditional RAG systems often suffer from "context fragmentation" in the medical field. Biologically, data is not just text—it is a network of connections (Drug  Target  Disease).
 
-1. **Relational Accuracy:** Unlike simple text matching, our Graph RAG tracks "Drug-Target-Disease" relationships as structured paths in Neo4j, preventing logical hallucinations.
-2. **Contextual Synthesis:** It bridges gaps by parallel fetching data from a **Knowledge Graph**, **Vector Store** (PubMed), and **Live Web Search**.
-3. **Multi-Hop Reasoning:** The agent can reason across diverse data types using **Llama 3.3**, answering complex questions by traversing graph nodes and grounding them with 2024-2025 clinical updates.
+**Our Solution:**
+
+* **Structured Truth:** Uses Neo4j to prevent "AI hallucinations" by tracing verified biological paths.
+* **Scientific Grounding:** Cross-references every claim against PubMed literature and real-time Web Search (2024-2025).
+* **Reasoning Capability:** Leverages Llama 3.3 to synthesize complex multi-source data into a professional Arabic/English report.
 
 ---
 
-## 🏗️ System Architecture
+## 📸 System in Action
 
-The architecture is built on four specialized layers:
+Stage 1: Query & Search,Stage 2: Synthesized Analysis
+"<img src=""assets/1.png"" width=""400"">","<img src=""assets/2.png"" width=""400"">"
+Agent orchestrating multi-source retrieval.,Final clinical report with grounded citations.
+---
 
-* **Knowledge Graph (Neo4j):** Stores rigid, verified relationships between drugs, targets (genes/proteins), and diseases.
-* **Vector Database (ChromaDB):** Indexes semantic embeddings of PubMed abstracts for local, high-speed literature retrieval.
-* **Real-time Tools:** Direct integration with **PubMed API** and **Tavily Search** for fetching the latest clinical trial updates (2024-2025).
-* **Orchestration (FastAPI):** The central hub managing tool execution and LLM communication.
+## 🏗️ Project Architecture
 
+```text
+DrugDiscoveryRAG/
+├── .env                  # API Keys & DB Credentials
+├── .gitignore            # Excluded files
+├── README.md             # Documentation
+├── requirements.txt      # Dependencies
+├── main.py               # FastAPI Backend (Orchestration)
+├── app.py                # Streamlit Frontend (UI/UX)
+├── setup.sh              # Quick deployment script
+├── core/
+│   ├── __init__.py
+│   ├── config.py         # Global settings & System Prompts
+│   ├── agent.py          # RAG Reasoning Engine
+│   └── embedder.py       # Vector Embedding Logic
+├── tools/
+│   ├── __init__.py
+│   ├── pubmed.py         # PubMed Central API Integration
+│   ├── web_search.py     # Tavily Web Search Engine
+│   ├── graph.py          # Neo4j Cypher Query Generator
+│   └── vector_db.py      # ChromaDB Vector Store
+├── tests/                # Unit & Integration Tests
+│   ├── test_agent.py
+│   └── test_pubmed.py
+└── data/                 # Local datasets & cache
 
+```
 
 ---
 
 ## 🛠️ Key Features
 
-- [x] **Hybrid Retrieval:** Combines Cypher queries (structured) with Semantic Search (unstructured).
-- [x] **2025 Data Accuracy:** Real-time web integration captures papers and warnings published as recently as this month.
-- [x] **Medical Citations:** Automatically organizes evidence into separate tabs (Graph, Literature, Web) for transparency.
-- [x] **Advanced UI:** A professional Streamlit dashboard with custom CSS for a medical-grade user experience.
-- [x] **Automated Seeding:** Built-in scripts to populate the Knowledge Graph with initial drug-target data on startup.
+* **Hybrid Knowledge Engine:** Merges **Graph Database** (Neo4j) for rigid facts with **Vector Store** (ChromaDB) for semantic nuances.
+* **Live PubMed Integration:** Automatically fetches the latest abstracts to ensure the AI's knowledge is never outdated.
+* **Triple-Tab Evidence:** Separates findings into `Graph`, `PubMed`, and `Web` for maximum transparency and peer review.
+* **Bilingual Precision:** Specialized for Arabic-speaking scientists while maintaining English technical terminology.
+* **Automated Seeding:** Built-in logic to populate Neo4j with a medical knowledge base seed on the first run.
 
 ---
 
-## 💻 Installation & Setup
+## 🚀 Getting Started
 
-### 1. Clone the Repository:
+### 1. Requirements
+
+* Python 3.9+
+* Neo4j Instance 
+* OpenRouter or OpenAI API Key
+
+### 2. Installation
+
 ```bash
-git clone https://github.com/Ahmadgatany/drug-discovery-rag-agent.git
-cd drug-discovery-rag-agent
-
-```
-
-### 2. Install Dependencies:
-
-```bash
+git clone https://github.com/YourUsername/DrugDiscoveryRAG.git
+cd DrugDiscoveryRAG
 pip install -r requirements.txt
 
 ```
 
-### 3. Environment Configuration
+### 3. Configuration
 
-Create a `.env` file in the root directory:
+Create a `.env` file:
 
 ```env
-OPENROUTER_API_KEY=your_key_here
+OPENROUTER_API_KEY=your_key
 NEO4J_URI=bolt://localhost:7687
 NEO4J_PASSWORD=your_password
-TAVILY_API_KEY=your_key_here
+TAVILY_API_KEY=your_key
 
 ```
 
-### 4. Run the Application
+### 4. Running the Project
 
-Start the Backend:
+**Start the Backend (FastAPI):**
 
 ```bash
 python main.py
 
 ```
 
-Start the Frontend:
+**Start the Frontend (Streamlit):**
 
 ```bash
 streamlit run app.py
@@ -89,16 +111,8 @@ streamlit run app.py
 
 ---
 
-## 📊 Example Queries
-
-* *"Compare the molecular mechanism of Metformin vs Sitagliptin."*
-* *"Are there any 2024-2025 warnings for Semaglutide regarding kidney function?"*
-* *"Show the gene target and common side effects for Empagliflozin."*
-
----
-
 ## 🛡️ Disclaimer
-*This system is for research purposes only. AI analysis should not replace professional medical judgment.*
+
+> **Research Use Only:** This tool is designed for educational and research purposes. It is not a substitute for professional medical advice, diagnosis, or treatment.
 
 **Developed with ❤️ for the BioTech AI Community.**
-

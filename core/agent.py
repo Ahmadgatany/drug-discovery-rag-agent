@@ -12,6 +12,16 @@ class MedicalAgent:
         self.vector = vector_tool
         self.web = web_tool
 
+    def _clean_text(self, text: str) -> str:
+        """
+        Removes any characters that are not Arabic, English, or basic mathematical symbols.
+        Used to clean outputs from unusual Chinese or other Asian characters.
+        """
+        pattern = re.compile(r'[^\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFFa-zA-Z0-9\s.,!?:;()\[\]\-_*#%/\"\'\n]')
+        cleaned_text = pattern.sub('', text)
+        
+        return cleaned_text.strip()
+
     def _extract_entities(self, query: str):
         extraction_prompt = f"""
         Extract ONLY the medical entities (Drug names, Genes, or Diseases) from the following text.
@@ -76,7 +86,11 @@ class MedicalAgent:
                 top_p=0.9,             
                 frequency_penalty=0.3 
             )
-            answer = response.choices[0].message.content
+            raw_answer = response.choices[0].message.content
+            
+            # تطبيق الفلتر لتنظيف الإجابة من الكلمات الصينية أو الغريبة
+            answer = self._clean_text(raw_answer)
+
         except Exception as e:
             answer = f"عذراً، حدث خطأ أثناء توليد الإجابة: {str(e)}"
 
